@@ -1,0 +1,180 @@
+:root {
+ --glow-color: rgb(217, 176, 255);
+ --glow-spread-color: rgba(191, 123, 255, 0.781);
+ --enhanced-glow-color: rgb(231, 206, 255);
+ --btn-color: rgb(100, 61, 136);
+}
+body::before {
+    content:"";
+    position:fixed;
+    width:100vw;
+    height:100vh;
+    pointer-events:none;
+    transition: all 2s ease-in-out .3s;
+    opacity:0;
+}
+body.success::before {
+    opacity:1;
+    background: url("https://media0.giphy.com/media/PMV7yRpwGO5y9p3DBx/giphy.gif?cid=ecf05e47jraxidmj3z7iufuzs3yaojt026ysxwisvkutj2yj&ep=v1_gifs_search&rid=giphy.gif&ct=g") center center / cover no-repeat;
+}
+button {
+ filter: hue-rotate(245deg);
+ border: .25em solid var(--glow-color);
+ padding: 1em 3em;
+ cursor:pointer;
+ color: white;
+ font-size: 15px;
+ font-weight: bold;
+ background-color: var(--btn-color);
+ border-radius: 1em;
+ outline: none;
+ box-shadow: 0 0 1em .25em var(--glow-color),
+        0 0 4em 1em var(--glow-spread-color),
+        inset 0 0 .75em .25em var(--glow-color);
+ text-shadow: 0 0 .5em var(--glow-color);
+ position: relative;
+ transition: all 0.3s;
+}
+
+button::after {
+ pointer-events: none;
+ content: "";
+ position: absolute;
+ top: 120%;
+ left: 0;
+ height: 100%;
+ width: 100%;
+ background-color: var(--glow-spread-color);
+ filter: blur(2em);
+ opacity: .7;
+ transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+}
+
+button:hover {
+ color: var(--btn-color);
+ background-color: var(--glow-color);
+ box-shadow: 0 0 1em .25em var(--glow-color),
+        0 0 4em 2em var(--glow-spread-color),
+        inset 0 0 .75em .25em var(--glow-color);
+}
+
+button:active {
+ box-shadow: 0 0 0.6em .25em var(--glow-color),
+        0 0 2.5em 2em var(--glow-spread-color),
+        inset 0 0 .5em .25em var(--glow-color);
+}
+.row {
+    display:flex;
+    gap:.5rem;
+    align-items:center;
+    font-size:1.5rem;
+    line-height:2rem;
+  margin-bottom: 2rem;
+    transition: all .2s ease;
+}
+.row.hide {
+    opacity:0;
+    transform:scale(0.8);
+    height:0;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.input {
+    opacity:0;
+    line-height:1;
+  --light: rgb(255, 255, 255);
+  --dark: rgb(50, 50, 50);
+  --br: 8px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: var(--light);
+  padding: .5rem;
+  border-radius: var(--br);
+  outline: none;
+  opacity: .8;
+  transition: .2s ease-in-out;
+  font-size:5rem;
+    display:inline-block;
+    appearance:none;
+    transition: all 1s ease-in-out;
+    width:0;
+}
+
+body {
+    color:white;
+    font-family:system-ui;
+    background:black;
+    margin:0;
+    display:flex;
+    justify-content:center;
+    width:100vw;
+    min-height:100vh;
+    overflow-x:hidden;
+    align-items:center;
+    flex-direction:column;
+}
+#spinner {
+    display: flex;
+    font-size:2rem;
+    max-width:70vw;
+    gap:.5rem;
+    flex-wrap:wrap;
+    color:grey;
+}
+
+#spinner span {
+    position:relative;
+}
+#spinner span.highlight {
+    color:yellow;
+}
+#spinner span::before {
+    transition: all 1s ease-in-out;
+    content:"";
+    display:block;
+    height:100%;
+    aspect-ratio: 1 / 1;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    border-radius:100%;
+ background-color: var(--btn-color);
+ filter: hue-rotate(245deg) brightness(150%);
+ box-shadow: 0 0 1em .25em var(--glow-color),
+        0 0 4em 1em var(--glow-spread-color),
+        inset 0 0 .75em .25em var(--glow-color);
+    padding:2rem;
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+    z-index:-1;
+}
+#spinner span.chosen {
+    animation: chosen .4s ease-in-out alternate infinite;
+    z-index:2;
+    color:white;
+ text-shadow: 0 0 .5em var(--glow-color);
+}
+#spinner span.chosen::before {
+    opacity:0.7;
+}
+@keyframes chosen {
+    0% {   
+        transform: scale(1);
+    }
+    100% {   
+        transform: scale(1.5);
+    }
+}
+.main-svg {
+    background: transparent !important;
+}
